@@ -28,7 +28,7 @@ export function Packet({ path, dur = 2.4, begin = 0, r = 2.6, color = C.teal, re
       <circle r={r * 2.4} fill={color} opacity={0.14}>
         <animateMotion
           dur={`${dur}s`}
-          begin={`${begin}s`}
+          begin={`${-(dur - (begin % dur))}s`}
           repeatCount="indefinite"
           path={path}
           keyPoints={reverse ? '1;0' : '0;1'}
@@ -39,7 +39,7 @@ export function Packet({ path, dur = 2.4, begin = 0, r = 2.6, color = C.teal, re
       <circle r={r} fill={color}>
         <animateMotion
           dur={`${dur}s`}
-          begin={`${begin}s`}
+          begin={`${-(dur - (begin % dur))}s`}
           repeatCount="indefinite"
           path={path}
           keyPoints={reverse ? '1;0' : '0;1'}

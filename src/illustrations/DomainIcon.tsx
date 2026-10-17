@@ -102,6 +102,11 @@ const ICONS: Record<string, ReactElement> = {
   ),
 };
 
+/** Raw glyph group (no wrapping <svg>) for composition into other SVGs. */
+export function DomainGlyph({ id }: { id: string }) {
+  return ICONS[id] ?? null;
+}
+
 export default function DomainIcon({ id, className = 'h-5 w-5' }: { id: string; className?: string }) {
   const glyph = ICONS[id];
   if (!glyph) return null;
