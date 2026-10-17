@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/EnZo1826/jakes9na/schema/project.schema.json",
+  "title": "Jakes9NA project manifest",
+  "description": "Validates content/projects.json. One entry per engineering case study. Adding a project = one entry here (plus an optional anonymised SVG). Entries with confidentiality_level 'restricted' must never be rendered.",
+  "type": "object",
+  "required": ["version", "projects"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 1 },
+    "projects": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/project" }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "nonEmptyText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "httpsUrlOrNull": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "format": "uri", "pattern": "^https://" }
+      ]
+    },
+    "architectureNode": {
+      "type": "object",
+      "required": ["id", "label", "layer"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyText" },
+        "layer": {
+          "description": "Position on the recurring edge-to-cloud narrative. Used for colour and grouping, not for claims of live connectivity.",
+          "enum": ["field", "control", "edge", "transport", "backend", "data", "app", "operator", "ai"]
+        },
+        "detail": {
+          "description": "One-line role of the node in this architecture.",
+          "type": "string"
+        }
+      }
+    },
+    "screenshot": {
+      "type": "object",
+      "required": ["src", "alt", "anonymised"],
+      "additionalProperties": false,
+      "properties": {
+        "src": {
+          "description": "Repo-relative path to an own illustration or anonymised mockup. Never a capture of a real client system.",
+          "type": "string",
+          "pattern": "^(?!https?://)[A-Za-z0-9._/-]+\\.(svg|png|webp|avif)$"
+        },
+        "alt": { "$ref": "#/$defs/nonEmptyText" },
+        "anonymised": { "const": true }
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "summary",
+        "domain",
+        "technologies",
+        "challenge",
+        "approach",
+        "architecture",
+        "project_status",
+        "verified_outcomes",
+        "screenshots",
+        "repository_url",
+        "demo_url",
+        "confidentiality_level",
+        "featured"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "code": {
+          "description": "Optional display code (A-H) used by the README banners.",
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        },
+        "title": { "$ref": "#/$defs/nonEmptyText" },
+        "summary": { "$ref": "#/$defs/nonEmptyText" },
+        "domain": {
+          "description": "Primary domain id from content/domains.json.",
+          "$ref": "#/$defs/slug"
+        },
+        "secondary_domains": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/slug" },
+          "uniqueItems": true
+        },
+        "technologies": {
+          "description": "Technology ids from content/technologies.json.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/slug" },
+          "uniqueItems": true
+        },
+        "contribution": {
+          "description": "Describes the engineering contribution, never ownership of an employer or client product.",
+          "type": "string"
+        },
+        "challenge": { "$ref": "#/$defs/nonEmptyText" },
+        "approach": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/nonEmptyText" }
+        },
+        "capabilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyText" }
+        },
+        "scope_areas_requiring_verification": {
+          "description": "Capability areas named in the brief whose maturity has not been confirmed. Render with a 'requires verification' label, never as delivered features.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyText" }
+        },
+        "architecture": {
+          "description": "Ordered node list; consecutive nodes are drawn as connected unless the renderer is given explicit edges.",
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/architectureNode" }
+        },
+        "project_status": {
+          "description": "Owner-verified maturity. 'requires_verification' is the default for anything the owner has not confirmed.",
+          "enum": ["operational", "in_development", "prototype", "concept", "requires_verification"]
+        },
+        "status_source": {
+          "description": "Where the status came from, e.g. 'Owner-verified, <date>'.",
+          "type": "string"
+        },
+        "verified_outcomes": {
+          "description": "Only outcomes confirmed by the owner. Empty is valid and preferred over an unverified claim.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyText" }
+        },
+        "screenshots": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/screenshot" }
+        },
+        "repository_url": { "$ref": "#/$defs/httpsUrlOrNull" },
+        "demo_url": { "$ref": "#/$defs/httpsUrlOrNull" },
+        "confidentiality_level": {
+          "enum": ["public", "anonymised", "restricted"]
+        },
+        "featured": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "description": "Unverified projects are never featured.",
+          "if": { "properties": { "project_status": { "const": "requires_verification" } } },
+          "then": { "properties": { "featured": { "const": false } } }
+        },
+        {
+          "description": "Anonymised and restricted projects never link to repositories or demos.",
+          "if": { "properties": { "confidentiality_level": { "enum": ["anonymised", "restricted"] } } },
+          "then": {
+            "properties": {
+              "repository_url": { "type": "null" },
+              "demo_url": { "type": "null" }
+            }
+          }
+        },
+        {
+          "description": "Restricted projects are kept in the manifest for completeness but never featured.",
+          "if": { "properties": { "confidentiality_level": { "const": "restricted" } } },
+          "then": { "properties": { "featured": { "const": false } } }
+        }
+      ]
+    }
+  }
+}

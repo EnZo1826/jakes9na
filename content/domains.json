@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "domains": [
+    {
+      "id": "industrial-automation",
+      "title": "Industrial Automation",
+      "short": "OT",
+      "summary": "PLC-based control and monitoring treated as a first-class engineering discipline: digital and analog I/O, pulse counting, Modbus registers, timers, alarms and remote supervision.",
+      "focus": [
+        "Industrial Shields Raspberry Pi PLCs",
+        "Pulse counters and interrupt-driven acquisition",
+        "Modbus / Modbus TCP register handling (signed, unsigned, 16- and 32-bit)",
+        "Threshold logic, process timers and machine states",
+        "Boot-time recovery and watchdog services"
+      ],
+      "projects": ["fuel-management", "industrial-monitoring"]
+    },
+    {
+      "id": "iot-edge",
+      "title": "IoT and Edge Computing",
+      "short": "EDGE",
+      "summary": "Edge devices that keep working through connectivity loss: local logic, buffering, MQTT messaging and controlled edge-to-cloud transfer over Ethernet, Wi-Fi or cellular links.",
+      "focus": [
+        "Raspberry Pi, Compute Module 4, RP2040, Pico W, ESP32-S3",
+        "MQTT and Mosquitto",
+        "Local buffering and offline operation",
+        "Cellular modems: NB-IoT, LTE-M, AT commands, APN setup",
+        "Device connectivity monitoring and recovery"
+      ],
+      "projects": ["fuel-management", "industrial-monitoring", "led-matrix-control"]
+    },
+    {
+      "id": "full-stack",
+      "title": "Full-Stack Development",
+      "short": "APP",
+      "summary": "Mobile-first, offline-first web applications and the services behind them: local transaction queues, API synchronisation, audit logging, exports and printed records.",
+      "focus": [
+        "Progressive Web Apps with offline sync queues",
+        "Node.js and Node-RED services and REST APIs",
+        "Frappe / ERPNext custom apps, DocTypes and print formats",
+        "Thermal receipts, QR codes, CSV and Excel exports",
+        "Idempotent sync and duplicate prevention"
+      ],
+      "projects": ["fuel-management", "security-checkpoint", "erp-solutions"]
+    },
+    {
+      "id": "ai-agents",
+      "title": "AI and Agent Systems",
+      "short": "AI",
+      "summary": "Practical AI in engineering work: multi-agent development workflows with defined roles and approval gates, local LLM experiments, tool calling and automation pipelines.",
+      "focus": [
+        "Multi-agent software development with role definitions",
+        "Local inference with Ollama",
+        "Tool-calling models and agent instructions",
+        "Workflow automation with n8n",
+        "Model evaluation and provider selection"
+      ],
+      "projects": ["ai-agent-lab"]
+    },
+    {
+      "id": "cloud-infrastructure",
+      "title": "Cloud Infrastructure",
+      "short": "CLOUD",
+      "summary": "Hosting and operating the services that field systems report to: Linux servers, reverse proxies, TLS, DNS, containers and service management.",
+      "focus": [
+        "AWS EC2 and Linux VPS deployment",
+        "nginx reverse proxy with HTTPS/TLS",
+        "Docker and Docker Compose",
+        "systemd services",
+        "SSH key authentication and service hardening"
+      ],
+      "projects": ["erp-solutions"]
+    },
+    {
+      "id": "security-technology",
+      "title": "Security Technology",
+      "short": "SEC",
+      "summary": "Software integration for physical security operations: checkpoint and visitor workflows, IP cameras, vehicle recognition and event notifications. Integration work, not a certified security service.",
+      "focus": [
+        "Security checkpoint and visitor registration apps",
+        "IP camera integration (RTSP streams, camera APIs, OSD overlays)",
+        "ANPR / vehicle recognition workflows",
+        "Security event notifications",
+        "GPS-enabled security operations"
+      ],
+      "projects": ["security-checkpoint"]
+    },
+    {
+      "id": "gps-telematics",
+      "title": "GPS and Telematics",
+      "short": "GPS",
+      "summary": "Turning vehicle telemetry into operational intelligence for transport, security and logistics: live position, trips, geofences, driver behaviour and scheduled reporting.",
+      "focus": [
+        "Teltonika telematics devices",
+        "GpsGate",
+        "Geofencing and fleet alerts",
+        "Harsh braking and acceleration analysis",
+        "Trip history, route replay and scheduled reports"
+      ],
+      "projects": ["fleet-intelligence"]
+    },
+    {
+      "id": "realtime-visualization",
+      "title": "Real-Time Visualization",
+      "short": "VIZ",
+      "summary": "Interfaces that turn telemetry into decisions: Grafana and custom dashboards, alarm feeds, historical trends and physical LED displays driven by live data.",
+      "focus": [
+        "Grafana OSS with InfluxDB",
+        "Custom real-time web dashboards over WebSockets and MQTT",
+        "Alarm feeds and connectivity monitoring",
+        "Timezone-aware tables, filters and exports",
+        "HUB75 LED matrix displays for process values"
+      ],
+      "projects": ["industrial-monitoring", "monitoring-dashboards", "led-matrix-control"]
+    }
+  ]
+}

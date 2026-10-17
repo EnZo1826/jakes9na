@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "brand": "Jakes9NA",
+  "github": {
+    "username": "EnZo1826",
+    "url": "https://github.com/EnZo1826"
+  },
+  "location": "Windhoek, Namibia",
+  "timezone": "Africa/Windhoek",
+  "role_line": "Multidisciplinary engineering developer and systems integrator",
+  "core_message": "I engineer intelligent systems that connect the physical world to software, data, automation, and artificial intelligence.",
+  "tagline": "FROM HARDWARE TO CLOUD. FROM DATA TO INTELLIGENCE.",
+  "closing_line": "JAKES9NA — ENGINEERING INTELLIGENT SYSTEMS.",
+  "intro": [
+    "I work across the boundary between operational technology and information technology: field sensors, industrial PLCs and edge computers on one side; APIs, databases, dashboards, business systems and AI tooling on the other.",
+    "Most of what I build is a complete chain rather than an isolated component. A pulse from a meter, an input on a PLC or a GPS fix becomes a record, an alarm, a report or a decision for an operator.",
+    "The systems run in the field, so I design for what the field actually does: connectivity drops, devices reboot, operators are busy, and data still has to arrive once, in order, with the right timestamp."
+  ],
+  "about": {
+    "approach": [
+      "Start from the physical process and the operator, then choose the hardware, protocols and software that fit it.",
+      "Keep local logic at the edge so the site keeps working when the uplink does not.",
+      "Treat data integrity as a requirement: device identities, timestamps in the right timezone, idempotent sync and an audit trail.",
+      "Prefer dense, readable operational interfaces over decorative ones.",
+      "Use AI where it measurably helps engineering work, and say plainly where it is still an experiment."
+    ],
+    "characteristics": [
+      "Systems-oriented problem solver",
+      "Hardware-to-software integration",
+      "Full-stack implementation",
+      "Real-time monitoring and telemetry",
+      "Industrial and commercial application development",
+      "Cloud and local infrastructure management",
+      "Automation and workflow optimisation",
+      "Practical AI integration and experimentation",
+      "Independent technical research",
+      "Continuous, iterative improvement"
+    ],
+    "contribution_note": "Case studies describe my engineering contribution to each system. They do not claim ownership of any employer's or client's product, and no client is named."
+  },
+  "pipeline": {
+    "title": "Edge-to-cloud pipeline",
+    "description": "The recurring architecture behind most of the work in this portfolio.",
+    "nodes": [
+      { "id": "sensor", "label": "Sensor", "layer": "field" },
+      { "id": "edge", "label": "Edge device", "layer": "edge" },
+      { "id": "local-logic", "label": "Local logic", "layer": "edge" },
+      { "id": "transport", "label": "MQTT / API", "layer": "transport" },
+      { "id": "backend", "label": "Cloud backend", "layer": "backend" },
+      { "id": "database", "label": "Database", "layer": "data" },
+      { "id": "dashboard", "label": "Dashboard", "layer": "app" },
+      { "id": "operator", "label": "Operator action", "layer": "operator" }
+    ]
+  },
+  "figures": {
+    "note": "Header figures confirmed as verified by the owner on 17 Oct 2026. No other numeric claims are permitted except live GitHub API data.",
+    "items": [
+      { "label": "SITES", "value": "18", "verified_by": "owner", "verified_on": "2026-10-17" },
+      { "label": "UPTIME", "value": "13 YRS", "verified_by": "owner", "verified_on": "2026-10-17" }
+    ]
+  },
+  "toolkit": {
+    "note": "Everyday development toolkit. Listed without levels; it does not imply equal depth in every item.",
+    "items": [
+      "Git",
+      "GitHub",
+      "Git Bash",
+      "Visual Studio Code",
+      "Bash",
+      "PowerShell",
+      "Linux shell scripting",
+      "JSON",
+      "YAML",
+      "pnpm",
+      "Python virtual environments",
+      "Windows",
+      "WSL2",
+      "Ubuntu 24.04 LTS",
+      "Ubuntu Server",
+      "Raspberry Pi OS",
+      "Zorin OS"
+    ]
+  },
+  "contact": {
+    "channels": [
+      {
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/jaco-hanekom-80821282/"
+      }
+    ],
+    "availability": "Open to projects in Southern Africa and remote.",
+    "topics": [
+      "Industrial integration",
+      "Custom web applications",
+      "IoT systems",
+      "Automation",
+      "AI integration",
+      "Engineering consultancy",
+      "Real-time monitoring applications"
+    ]
+  },
+  "disclaimers": {
+    "security": "Software integration for security and surveillance equipment. Not a certified physical-security service provider and no formal penetration-testing credentials are claimed.",
+    "ai": "AI models listed here were used or evaluated, not developed or trained by me. Agent workflows are described as they actually run, not as autonomous production systems.",
+    "architecture_lab": "The Architecture Lab is an educational model of a typical system. It is not connected to any live site or device."
+  },
+  "seo": {
+    "title": "Jakes9NA — Engineering intelligent systems",
+    "description": "Jakes9NA, Windhoek, Namibia: industrial automation, IoT and edge computing, full-stack and offline-first applications, telemetry dashboards, ERP integration and practical AI engineering."
+  }
+}
