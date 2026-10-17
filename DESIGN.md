@@ -29,16 +29,40 @@ LEDs (3:1 non-text minimum).
 
 ## Motifs
 
-Technical grid, scan line, node/edge pulses, HMI panels with status LEDs
-(`src/components/GridBackdrop.tsx`, `StatusLed.tsx`, `Panel.tsx`).
+Technical grid, scan line, node/edge pulses, instrument panels with corner
+registration ticks and status LEDs (`src/components/GridBackdrop.tsx`,
+`StatusLed.tsx`, `Panel.tsx`, `.surface` / `.ticks` in `src/index.css`).
+
+## Illustrations
+
+`src/illustrations/` holds the authored SVG set: `HeroSchematic` (signal
+chain), `ProjectIllustrations` (one 320x140 banner per case study),
+`DomainIcon` (24px, 1.5 stroke glyphs for domains and pipeline layers) and
+the shared `primitives` (Trace, Packet, Led, DotGrid). All are schematic
+and labelled as such — never screenshots of client systems. Wrap animated
+illustrations in `LiveRegion` so their loops pause off-screen.
+
+## Profile README assets
+
+`npm run export:readme` renders the GitHub profile SVGs (hero, terminal,
+domains, matrix, pipeline, AI lab, eight case-study cards; dark + light)
+from the same content JSON and illustration components into
+`../EnZo1826/assets`. Re-run it after any content change, then commit in
+the profile repo. Light variants map dark tokens to the light set in
+`EnZo1826/tokens.json`.
 
 ## Motion rules
 
 - Every animated element has a complete, correct static first frame.
+- Scroll reveal is CSS (`[data-reveal]`), armed only when `html.motion-ok`
+  is set by `src/hooks/useScrollReveal.ts`; content is visible without JS.
 - `prefers-reduced-motion: reduce` disables CSS keyframe animation
-  (`src/index.css`) and skips the GSAP reveal entirely
-  (`src/hooks/useScrollReveal.ts`, `src/hooks/useReducedMotion.ts`).
-- The 3D mount point (`src/three/EngineeringCoreMount.tsx`) additionally
+  (`src/index.css`), never arms the reveal, skips the GSAP hero boot
+  sequence and does not render SMIL packets (`useReducedMotion`).
+- Decorative loops pause when off-screen or the tab is hidden
+  (`src/components/LiveRegion.tsx`; the WebGL loop does the same).
+- The 3D mount point (`src/three/EngineeringCoreMount.tsx`) shows the SVG
+  core (`CoreFallback.tsx`) by default and only swaps in WebGL when it
   gates on WebGL support, `hardwareConcurrency <= 4`, and
   `navigator.connection?.saveData` — see `src/three/capability.ts`.
 

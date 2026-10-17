@@ -16,8 +16,8 @@ const TONE_BY_STATUS: Record<ProjectStatus, LedTone> = {
  */
 export default function StatusBadge({ status }: { status: ProjectStatus }) {
   return (
-    <span className="inline-flex items-center gap-2 border border-line bg-bg px-2.5 py-1 font-mono text-xs uppercase tracking-wide text-text-strong">
-      <StatusLed tone={TONE_BY_STATUS[status]} />
+    <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-line bg-bg/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-text-strong backdrop-blur">
+      <StatusLed tone={TONE_BY_STATUS[status]} pulse={status === 'operational'} />
       {formatProjectStatus(status)}
     </span>
   );
