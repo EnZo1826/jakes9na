@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://enzo1826.github.io/jakes9na/sitemap.xml
