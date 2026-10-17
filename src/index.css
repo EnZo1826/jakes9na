@@ -14,10 +14,25 @@
 @layer base {
   html {
     @apply scroll-smooth;
+    scroll-padding-top: 5rem;
+    scrollbar-color: #1f2a36 #05070a;
+    scrollbar-width: thin;
   }
 
   body {
     @apply bg-bg text-text font-sans;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   :focus-visible {
@@ -28,6 +43,126 @@
     background-color: #49d7b1;
     color: #05070a;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05070a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1f2a36;
+    border: 2px solid #05070a;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2b3a4a;
+  }
+
+  a {
+    text-underline-offset: 4px;
+  }
+}
+
+@layer components {
+  /* Instrument surface: hairline border, inner top highlight, soft offset depth. */
+  .surface {
+    @apply relative rounded-lg border border-line bg-panel;
+    box-shadow:
+      inset 0 1px 0 rgba(230, 237, 243, 0.04),
+      0 12px 32px -18px rgba(0, 0, 0, 0.9);
+  }
+
+  .surface-interactive {
+    transition:
+      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .surface-interactive:hover {
+    border-color: rgba(73, 215, 177, 0.45);
+    box-shadow:
+      inset 0 1px 0 rgba(230, 237, 243, 0.06),
+      0 18px 40px -20px rgba(0, 0, 0, 0.95);
+  }
+
+  /* Corner registration ticks — the panel motif shared with the profile SVG set. */
+  .ticks::before,
+  .ticks::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    border-color: rgba(73, 215, 177, 0.6);
+  }
+  .ticks::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-top-left-radius: 8px;
+  }
+  .ticks::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-bottom-right-radius: 8px;
+  }
+
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-text;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded border border-line bg-bg/60 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-md border border-teal bg-teal px-5 py-3 font-mono text-xs font-medium uppercase tracking-[0.16em] text-bg;
+    transition:
+      background-color 180ms ease,
+      transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover {
+    background-color: #6be3c3;
+  }
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-md border border-line bg-panel/70 px-5 py-3 font-mono text-xs font-medium uppercase tracking-[0.16em] text-text-strong;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(73, 215, 177, 0.6);
+    background-color: rgba(73, 215, 177, 0.06);
+  }
+
+  .toggle {
+    @apply rounded-md border px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider;
+    transition:
+      border-color 160ms ease,
+      background-color 160ms ease,
+      color 160ms ease;
+  }
+  .toggle[aria-pressed='true'],
+  .toggle[aria-selected='true'] {
+    @apply border-teal bg-teal/10 text-text-strong;
+  }
+  .toggle[aria-pressed='false'],
+  .toggle[aria-selected='false'] {
+    @apply border-line bg-panel text-text;
+  }
+  .toggle[aria-pressed='false']:hover,
+  .toggle[aria-selected='false']:hover {
+    @apply border-teal/50 text-text-strong;
+  }
 }
 
 @layer utilities {
@@ -37,14 +172,44 @@
       linear-gradient(to bottom, #1f2a36 1px, transparent 1px);
     background-size: 40px 40px;
   }
+
+  .bg-grid-fine {
+    background-image:
+      linear-gradient(to right, rgba(31, 42, 54, 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(31, 42, 54, 0.5) 1px, transparent 1px);
+    background-size: 10px 10px;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  }
+
+  .mask-radial {
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 65% 45%, #000 25%, transparent 78%);
+    mask-image: radial-gradient(ellipse 75% 70% at 65% 45%, #000 25%, transparent 78%);
+  }
+
+  .mask-ticker {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
 }
+
+/* ---------- Motion ----------
+   Every animated element has a complete static first frame. Loops pause
+   when their <LiveRegion> container leaves the viewport (.is-paused). */
 
 @keyframes scan-line {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(-10vh);
   }
   100% {
-    transform: translateY(100%);
+    transform: translateY(100vh);
   }
 }
 
@@ -58,18 +223,206 @@
   }
 }
 
-.animate-scan-line {
-  animation: scan-line 6s linear infinite;
+@keyframes led-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.25;
+  }
 }
 
+@keyframes trace-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+@keyframes ring-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bar-rise {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+}
+
+@keyframes runner-x {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(340%);
+  }
+}
+
+@keyframes runner-y {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(340%);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-scan-line {
+  animation: scan-line 7s linear infinite;
+}
 .animate-node-pulse {
   animation: node-pulse 2.4s ease-in-out infinite;
+}
+.animate-led {
+  animation: led-blink 2.4s steps(1, end) infinite;
+}
+.animate-trace {
+  stroke-dasharray: 4 6;
+  animation: trace-flow 1.6s linear infinite;
+}
+.animate-trace-slow {
+  stroke-dasharray: 2 8;
+  animation: trace-flow 3.2s linear infinite;
+}
+.animate-ping-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ring-ping 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.animate-caret {
+  animation: caret 1s steps(1, end) infinite;
+}
+.animate-spin-slow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin-slow 30s linear infinite;
+}
+.animate-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: bar-rise 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.animate-marquee {
+  animation: marquee 48s linear infinite;
+}
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+.signal-runner {
+  background: linear-gradient(to bottom, transparent, rgba(73, 215, 177, 0.9) 50%, transparent);
+  height: 30%;
+  animation: runner-y 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@media (min-width: 1024px) {
+  .signal-runner {
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(to right, transparent, rgba(73, 215, 177, 0.95) 50%, transparent);
+    animation-name: runner-x;
+    animation-duration: 3.2s;
+  }
+}
+.animate-panel-in {
+  animation: panel-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.is-paused,
+.is-paused * {
+  animation-play-state: paused !important;
+}
+
+/* Scroll reveal: content is visible by default; JS opts the page into the
+   hidden start state only when motion is allowed (html.motion-ok), and a
+   safety timer reveals everything regardless. */
+.motion-ok [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(6px);
+  transition:
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(min(var(--reveal-i, 0), 8) * 70ms);
+}
+.motion-ok [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-scan-line,
-  .animate-node-pulse {
+  .animate-node-pulse,
+  .animate-led,
+  .animate-trace,
+  .animate-trace-slow,
+  .animate-ping-ring,
+  .animate-caret,
+  .animate-spin-slow,
+  .animate-bar,
+  .animate-marquee,
+  .animate-float,
+  .animate-panel-in,
+  .signal-runner {
     animation: none !important;
+  }
+
+  .animate-ping-ring,
+  .signal-runner {
+    opacity: 0;
   }
 
   html {

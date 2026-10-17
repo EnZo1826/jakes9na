@@ -4,12 +4,14 @@ interface PanelProps {
   children: ReactNode;
   className?: string;
   as?: 'div' | 'article' | 'li';
+  interactive?: boolean;
+  ticks?: boolean;
 }
 
-/** Shared HMI-style panel surface: dark card, hairline border, no shadow tricks. */
-export default function Panel({ children, className = '', as = 'div' }: PanelProps) {
+/** Shared instrument-panel surface: hairline border, inner highlight, soft depth. */
+export default function Panel({ children, className = '', as = 'div', interactive = false, ticks = false }: PanelProps) {
   const Tag = as;
   return (
-    <Tag className={`border border-line bg-panel ${className}`}>{children}</Tag>
+    <Tag className={`surface ${interactive ? 'surface-interactive' : ''} ${ticks ? 'ticks' : ''} ${className}`}>{children}</Tag>
   );
 }

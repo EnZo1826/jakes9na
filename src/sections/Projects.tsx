@@ -1,7 +1,7 @@
 import { getFeaturedProjects, getVisibleProjects } from '../content/loader';
 import SectionHeading from '../components/SectionHeading';
 import ProjectCard from '../components/ProjectCard';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { reveal } from '../hooks/useScrollReveal';
 
 /**
  * Cards built from content/projects.json via the loader. Restricted
@@ -15,32 +15,36 @@ export default function Projects() {
   const visible = getVisibleProjects();
   const featuredIds = new Set(featured.map((project) => project.id));
   const other = visible.filter((project) => !featuredIds.has(project.id));
-  const revealRef = useScrollReveal<HTMLUListElement>();
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="border-b border-line px-6 py-20">
-      <div className="mx-auto max-w-5xl">
+    <section id="projects" aria-labelledby="projects-heading" className="relative border-b border-line px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           id="projects-heading"
-          eyebrow="Projects"
           title="Case studies"
-          description="Engineering contributions. No client is named; some are anonymised."
+          description="Engineering contributions. No client is named; some are anonymised. Illustrations are schematic, not screenshots of client systems."
+          aside={
+            <p className="font-mono text-xs uppercase tracking-wider text-text">
+              <span className="tabular text-2xl font-semibold text-text-strong">{featured.length}</span>
+              <span className="ml-2">featured</span>
+            </p>
+          }
         />
 
-        <ul ref={revealRef} className="grid gap-6 md:grid-cols-2">
-          {featured.map((project) => (
-            <li key={project.id}>
+        <ul className="grid gap-6 md:grid-cols-2">
+          {featured.map((project, index) => (
+            <li key={project.id} {...reveal(index % 2)}>
               <ProjectCard project={project} />
             </li>
           ))}
         </ul>
 
         {other.length > 0 ? (
-          <div className="mt-10">
-            <h3 className="font-mono text-xs uppercase tracking-[0.3em] text-text">Additional, non-featured</h3>
+          <div className="mt-16">
+            <h3 className="label">Additional, non-featured</h3>
             <ul className="mt-4 grid gap-6 md:grid-cols-2">
-              {other.map((project) => (
-                <li key={project.id}>
+              {other.map((project, index) => (
+                <li key={project.id} {...reveal(index % 2)}>
                   <ProjectCard project={project} />
                 </li>
               ))}

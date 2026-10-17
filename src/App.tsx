@@ -10,8 +10,11 @@ import ArchitectureLab from './sections/ArchitectureLab';
 import AiLab from './sections/AiLab';
 import GithubActivity from './sections/GithubActivity';
 import Contact from './sections/Contact';
+import { useScrollReveal } from './hooks/useScrollReveal';
 
 export default function App() {
+  useScrollReveal();
+
   return (
     <>
       <SkipLink />
