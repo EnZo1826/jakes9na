@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "title": "AI Engineering Laboratory",
+  "intro": "Practical AI work: structuring agents so they are useful in real engineering, running models locally to understand their limits, and wiring AI into workflows where it saves time. Everything here is described as it actually runs. Models are used or evaluated, not built or trained by me.",
+  "project_id": "ai-agent-lab",
+  "environments": [
+    { "name": "Claude Code", "use": "AI-assisted software engineering and agent execution", "technology_id": "claude-code" },
+    { "name": "Hermes Agent", "use": "Agent runtime with persistent memory and tools", "technology_id": "hermes-agent" },
+    { "name": "Paperclip", "use": "Multi-agent coordination: roles, tasks, reviews, approval gates", "technology_id": "paperclip" },
+    { "name": "Ollama", "use": "Local inference for experiments and tool-calling tests", "technology_id": "ollama" },
+    { "name": "Open WebUI", "use": "Front end for local models", "technology_id": "open-webui" },
+    { "name": "OpenAI / Codex", "use": "Hosted models for development assistance", "technology_id": "openai" },
+    { "name": "n8n", "use": "Workflow automation, including AI steps", "technology_id": "n8n" },
+    { "name": "OpenClaw", "use": "Agent framework explored", "technology_id": "openclaw" },
+    { "name": "Claude Desktop, ChatGPT", "use": "Research and documentation assistance", "technology_id": "claude-desktop" }
+  ],
+  "models": {
+    "note": "Model families used or evaluated. None were developed or trained by me.",
+    "items": [
+      { "name": "Claude models", "relation": "used" },
+      { "name": "OpenAI models", "relation": "used" },
+      { "name": "Gemini models", "relation": "evaluated" },
+      { "name": "Kimi models", "relation": "evaluated" },
+      { "name": "DeepSeek R1", "relation": "evaluated" },
+      { "name": "Qwen3", "relation": "evaluated" },
+      { "name": "Gemma 2", "relation": "evaluated" },
+      { "name": "Llama 3.1", "relation": "evaluated" },
+      { "name": "Mixtral", "relation": "evaluated" }
+    ]
+  },
+  "workflows": [
+    {
+      "id": "multi-agent-dev",
+      "title": "Multi-agent software development",
+      "maturity": "working workflow",
+      "description": "A coordinator plans and delegates; specialist agents for frontend, backend, IoT, DevOps and security review work on feature branches and pull requests. Role definitions live in written agent instructions (AGENTS.md style).",
+      "guardrails": [
+        "No merge to main, production deploy, data deletion or device change without explicit human approval on the task.",
+        "Security review is a separate role with its own escalation path.",
+        "Every task records changes, verification evidence and the next owner."
+      ]
+    },
+    {
+      "id": "persistent-context",
+      "title": "Persistent agent memory and project context",
+      "maturity": "working workflow",
+      "description": "Decisions, conventions and environment facts carry between sessions so agents do not start from zero, while task-specific detail stays with the task."
+    },
+    {
+      "id": "local-llm",
+      "title": "Local LLM experiments",
+      "maturity": "experiment",
+      "description": "Running open models locally through Ollama to compare reasoning, tool calling and speed on consumer hardware, and to judge where local inference is good enough."
+    },
+    {
+      "id": "model-selection",
+      "title": "Model selection and fallback",
+      "maturity": "working workflow",
+      "description": "Choosing a provider and model per task, with fallbacks when a model is unavailable or unsuitable."
+    },
+    {
+      "id": "automation-pipelines",
+      "title": "Automation pipelines",
+      "maturity": "experiment",
+      "description": "n8n and scripted workflows for automated information collection, scheduled operational and market monitoring, and documentation generation."
+    }
+  ],
+  "use_cases": [
+    "Software development assistance",
+    "Automated engineering workflows",
+    "Research",
+    "Operational data interpretation",
+    "Trading market observation (analysis only)",
+    "Workflow generation",
+    "Application prototyping",
+    "Technical documentation",
+    "Automated information collection"
+  ],
+  "disclaimer": "Prototype agents are not presented as autonomous production systems. Human approval gates apply to every sensitive action."
+}

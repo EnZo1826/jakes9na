@@ -1,0 +1,78 @@
+/* Self-hosted fonts via @fontsource — no CDN, no Google Fonts link. */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-teal ring-offset-2 ring-offset-bg;
+  }
+
+  ::selection {
+    background-color: #49d7b1;
+    color: #05070a;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, #1f2a36 1px, transparent 1px),
+      linear-gradient(to bottom, #1f2a36 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-scan-line {
+  animation: scan-line 6s linear infinite;
+}
+
+.animate-node-pulse {
+  animation: node-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scan-line,
+  .animate-node-pulse {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

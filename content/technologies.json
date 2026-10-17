@@ -1,0 +1,719 @@
+{
+  "version": 1,
+  "evidence_types": {
+    "project": "Used in at least one listed engineering project (see 'projects').",
+    "explored": "Used in development, evaluated or experimented with; not tied to a listed case study.",
+    "portfolio": "Adopted to build this portfolio site. Not a claim of prior production experience."
+  },
+  "familiarity_note": "No skill levels are shown. Levels will only be added if supplied by the owner.",
+  "categories": [
+    {
+      "id": "field",
+      "label": "Field hardware",
+      "description": "Sensors, meters, controllers and devices in the physical process"
+    },
+    {
+      "id": "edge",
+      "label": "Edge and embedded",
+      "description": "Compute at the site: local logic, buffering, firmware"
+    },
+    {
+      "id": "comms",
+      "label": "Communications",
+      "description": "Protocols, messaging and networks between field and cloud"
+    },
+    {
+      "id": "backend",
+      "label": "Backend and integration",
+      "description": "Services, APIs and business logic"
+    },
+    {
+      "id": "data",
+      "label": "Data and observability",
+      "description": "Storage, time series and monitoring"
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud and infrastructure",
+      "description": "Hosting, proxying, TLS, DNS and operations"
+    },
+    {
+      "id": "apps",
+      "label": "Applications and UI",
+      "description": "Operator-facing web, PWA and display interfaces"
+    },
+    {
+      "id": "ai",
+      "label": "AI and automation",
+      "description": "Agent tooling, local inference and workflow automation"
+    }
+  ],
+  "technologies": [
+    {
+      "id": "raspberry-pi",
+      "name": "Raspberry Pi",
+      "category": "edge",
+      "role": "Industrial edge computer for I/O acquisition and local logic",
+      "projects": [
+        "fuel-management",
+        "industrial-monitoring"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "compute-module-4",
+      "name": "Raspberry Pi Compute Module 4",
+      "category": "edge",
+      "role": "Embedded compute inside industrial controller hardware",
+      "projects": [
+        "fuel-management"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "industrial-shields-plc",
+      "name": "Industrial Shields Raspberry Pi PLCs",
+      "category": "field",
+      "role": "Industrial-rated digital/analog I/O and pulse inputs on a Linux PLC",
+      "projects": [
+        "fuel-management",
+        "industrial-monitoring"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "flow-meter-pulser",
+      "name": "Flow-meter pulser",
+      "category": "field",
+      "role": "Flow-meter pulse output used for pulse-to-volume measurement",
+      "projects": [
+        "fuel-management"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "gpio-pulse-inputs",
+      "name": "GPIO and interrupt pulse inputs",
+      "category": "field",
+      "role": "Interrupt-driven event and pulse counting from field equipment",
+      "projects": [
+        "fuel-management"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "modbus",
+      "name": "Modbus / Modbus TCP",
+      "category": "comms",
+      "role": "Polling equipment registers, including signed/unsigned 16- and 32-bit values",
+      "projects": [
+        "industrial-monitoring"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "mqtt",
+      "name": "MQTT",
+      "category": "comms",
+      "role": "Telemetry, events and display commands between edge, brokers (e.g. Mosquitto) and apps",
+      "projects": [
+        "fuel-management",
+        "industrial-monitoring",
+        "led-matrix-control",
+        "monitoring-dashboards"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "websockets",
+      "name": "WebSockets",
+      "category": "comms",
+      "role": "Live push of telemetry to dashboards and operator screens",
+      "projects": [
+        "industrial-monitoring",
+        "monitoring-dashboards"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "rest-api",
+      "name": "REST APIs",
+      "category": "backend",
+      "role": "Authenticated integration between PWAs, edge systems and ERP backends",
+      "projects": [
+        "security-checkpoint"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "node-red",
+      "name": "Node-RED",
+      "category": "backend",
+      "role": "Flow-based edge and service logic: decoding, thresholds, timers, transactions, routing",
+      "projects": [
+        "fuel-management",
+        "industrial-monitoring",
+        "led-matrix-control",
+        "monitoring-dashboards"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "category": "backend",
+      "role": "Services, integrations and agent tooling runtime",
+      "projects": [
+        "security-checkpoint",
+        "ai-agent-lab"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript",
+      "category": "apps",
+      "role": "Node-RED function nodes, services and browser applications",
+      "projects": [
+        "fuel-management",
+        "security-checkpoint",
+        "erp-solutions",
+        "monitoring-dashboards"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "backend",
+      "role": "Frappe apps, scripting, data processing and automation",
+      "projects": [
+        "ai-agent-lab",
+        "erp-solutions"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "frappe",
+      "name": "Frappe Framework",
+      "category": "backend",
+      "role": "Custom apps, DocTypes, APIs and business rules",
+      "projects": [
+        "fuel-management",
+        "security-checkpoint",
+        "erp-solutions"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "erpnext",
+      "name": "ERPNext",
+      "category": "backend",
+      "role": "Business system of record for operational transactions",
+      "projects": [
+        "security-checkpoint",
+        "erp-solutions"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "jinja",
+      "name": "Jinja",
+      "category": "apps",
+      "role": "ERP print formats: quotations, invoices, operational documents",
+      "projects": [
+        "erp-solutions"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "mariadb",
+      "name": "MariaDB",
+      "category": "data",
+      "role": "ERPNext database",
+      "projects": [
+        "erp-solutions"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "influxdb",
+      "name": "InfluxDB 1.8",
+      "category": "data",
+      "role": "Time-series storage for telemetry history and trends",
+      "projects": [
+        "industrial-monitoring",
+        "monitoring-dashboards"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana OSS",
+      "category": "data",
+      "role": "Trend, alarm and status dashboards over time-series data",
+      "projects": [
+        "industrial-monitoring",
+        "monitoring-dashboards"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "linux",
+      "name": "Linux",
+      "category": "edge",
+      "role": "Edge and server operating environment with systemd services",
+      "projects": [
+        "industrial-monitoring"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "nginx",
+      "name": "nginx",
+      "category": "cloud",
+      "role": "Reverse proxy and HTTPS termination for hosted services",
+      "projects": [
+        "erp-solutions"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "aws-ec2",
+      "name": "AWS EC2",
+      "category": "cloud",
+      "role": "Hosting for cloud ERP sites",
+      "projects": [
+        "erp-solutions"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "pwa",
+      "name": "Progressive Web Apps",
+      "category": "apps",
+      "role": "Installable, offline-first operator apps with local queues and sync",
+      "projects": [
+        "fuel-management",
+        "security-checkpoint"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "thermal-printing",
+      "name": "Thermal receipt printing",
+      "category": "apps",
+      "role": "Printed transaction receipts at the point of operation",
+      "projects": [
+        "fuel-management"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "html-css",
+      "name": "HTML5 / CSS3",
+      "category": "apps",
+      "role": "Custom dashboards, forms and print-friendly layouts",
+      "projects": [
+        "monitoring-dashboards"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "rp2040",
+      "name": "RP2040",
+      "category": "edge",
+      "role": "Microcontroller driving HUB75 LED matrices",
+      "projects": [
+        "led-matrix-control"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "pico-w",
+      "name": "Raspberry Pi Pico W",
+      "category": "edge",
+      "role": "Wi-Fi microcontroller for MQTT-driven displays",
+      "projects": [
+        "led-matrix-control"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "esp32-s3",
+      "name": "ESP32-S3",
+      "category": "edge",
+      "role": "Microcontroller for LED matrix display control",
+      "projects": [
+        "led-matrix-control"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "micropython",
+      "name": "MicroPython",
+      "category": "edge",
+      "role": "Display firmware: rendering, matrix mapping, thresholds, alarm modes",
+      "projects": [
+        "led-matrix-control"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "hub75",
+      "name": "HUB75 RGB LED matrices",
+      "category": "field",
+      "role": "P4 64x32 panels in single and four-panel 2x2 layouts",
+      "projects": [
+        "led-matrix-control"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "interstate75",
+      "name": "Pimoroni Interstate75",
+      "category": "edge",
+      "role": "RP2040 HUB75 driver board",
+      "projects": [
+        "led-matrix-control"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "teltonika",
+      "name": "Teltonika telematics",
+      "category": "field",
+      "role": "Vehicle GPS and event reporting units",
+      "projects": [
+        "fleet-intelligence"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "gpsgate",
+      "name": "GpsGate",
+      "category": "backend",
+      "role": "Fleet tracking platform for positions, events, alerts and reports",
+      "projects": [
+        "fleet-intelligence"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "category": "ai",
+      "role": "AI-assisted software engineering and agent execution",
+      "projects": [
+        "ai-agent-lab"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "category": "ai",
+      "role": "Agent runtime with persistent memory and tool integrations",
+      "projects": [
+        "ai-agent-lab"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "paperclip",
+      "name": "Paperclip",
+      "category": "ai",
+      "role": "Multi-agent task coordination with roles, reviews and approval gates",
+      "projects": [
+        "ai-agent-lab"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "category": "ai",
+      "role": "Local LLM inference for experiments and tool-calling tests",
+      "projects": [
+        "ai-agent-lab"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI models / Codex",
+      "category": "ai",
+      "role": "Hosted models used for development assistance",
+      "projects": [
+        "ai-agent-lab"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "category": "ai",
+      "role": "Workflow automation, including AI workflows",
+      "projects": [
+        "ai-agent-lab"
+      ],
+      "evidence": "project"
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "category": "data",
+      "role": "Hosted Postgres with auth, evaluated and used in development",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "postgresql",
+      "name": "PostgreSQL",
+      "category": "data",
+      "role": "Relational database used in development work",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "pocketbase",
+      "name": "PocketBase",
+      "category": "data",
+      "role": "Lightweight backend evaluated for small apps",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "neon",
+      "name": "Neon",
+      "category": "data",
+      "role": "Serverless Postgres evaluated",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify",
+      "category": "cloud",
+      "role": "Static frontend hosting used in development",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "category": "cloud",
+      "role": "Static frontend hosting used in development",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "openwa",
+      "name": "OpenWA",
+      "category": "backend",
+      "role": "Messaging automation explored",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "docker",
+      "name": "Docker and Docker Compose",
+      "category": "cloud",
+      "role": "Containerised services and configuration-driven deployments",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "systemd",
+      "name": "systemd services",
+      "category": "edge",
+      "role": "Service management and boot-time startup",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "aws-route53",
+      "name": "AWS Route 53",
+      "category": "cloud",
+      "role": "DNS management",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "certbot",
+      "name": "Certbot",
+      "category": "cloud",
+      "role": "TLS certificate issuance and renewal",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "overlay-vpn",
+      "name": "Overlay VPN",
+      "category": "comms",
+      "role": "Remote access to sites",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "ubiquiti",
+      "name": "Ubiquiti networking",
+      "category": "comms",
+      "role": "Site network equipment",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "teltonika-routers",
+      "name": "Teltonika routers",
+      "category": "comms",
+      "role": "Cellular routers: WAN/LAN configuration for remote sites",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "siemens-s7",
+      "name": "Siemens S7 integration",
+      "category": "comms",
+      "role": "PLC integration development",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "lte-m-nbiot-modem",
+      "name": "LTE-M/NB-IoT modem",
+      "category": "comms",
+      "role": "NB-IoT / LTE-M modem: AT commands, APN, registration and signal troubleshooting",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "cellular-iot",
+      "name": "NB-IoT / LTE-M / GPRS",
+      "category": "comms",
+      "role": "Low-bandwidth cellular links with scheduled connectivity windows and auto-recovery",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "hikvision",
+      "name": "Hikvision devices",
+      "category": "field",
+      "role": "IP cameras: RTSP streams, camera APIs, OSD overlays",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "dahua",
+      "name": "Dahua devices",
+      "category": "field",
+      "role": "IP cameras: RTSP streams and camera APIs",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "anpr",
+      "name": "ANPR / vehicle recognition",
+      "category": "field",
+      "role": "Number-plate recognition integration for vehicle access workflows",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "open-webui",
+      "name": "Open WebUI",
+      "category": "ai",
+      "role": "Front end for local models",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "openclaw",
+      "name": "OpenClaw",
+      "category": "ai",
+      "role": "Agent framework explored",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "claude-desktop",
+      "name": "Claude Desktop",
+      "category": "ai",
+      "role": "AI assistant used for research and documentation",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "category": "ai",
+      "role": "AI assistant used for research and documentation",
+      "projects": [],
+      "evidence": "explored"
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "category": "apps",
+      "role": "UI library for this portfolio site",
+      "projects": [],
+      "evidence": "portfolio"
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "category": "apps",
+      "role": "Type-safe source for this portfolio site",
+      "projects": [],
+      "evidence": "portfolio"
+    },
+    {
+      "id": "vite",
+      "name": "Vite",
+      "category": "apps",
+      "role": "Build tool for this portfolio site",
+      "projects": [],
+      "evidence": "portfolio"
+    },
+    {
+      "id": "tailwind-css",
+      "name": "Tailwind CSS",
+      "category": "apps",
+      "role": "Styling from shared design tokens",
+      "projects": [],
+      "evidence": "portfolio"
+    },
+    {
+      "id": "gsap",
+      "name": "GSAP",
+      "category": "apps",
+      "role": "Scroll and timeline animation with reduced-motion fallbacks",
+      "projects": [],
+      "evidence": "portfolio"
+    },
+    {
+      "id": "threejs",
+      "name": "Three.js / React Three Fiber",
+      "category": "apps",
+      "role": "Lazy-loaded 3D engineering core in the hero",
+      "projects": [],
+      "evidence": "portfolio"
+    },
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions",
+      "category": "cloud",
+      "role": "CI, schema validation, data refresh and Pages deployment for this site",
+      "projects": [],
+      "evidence": "portfolio"
+    },
+    {
+      "id": "github-pages",
+      "name": "GitHub Pages",
+      "category": "cloud",
+      "role": "Static hosting for this site",
+      "projects": [],
+      "evidence": "portfolio"
+    }
+  ]
+}

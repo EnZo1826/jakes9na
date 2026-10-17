@@ -1,0 +1,102 @@
+# PR gate for the Jakes9NA site. Read-only: default GITHUB_TOKEN with
+# contents: read, no secrets, SHA-pinned actions (tag in the trailing comment).
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck, lint, validate, disclosure, build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # commit messages are part of the disclosure check
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - name: Schema validation
+        run: npm run validate
+      - run: npm run test
+      - name: IPv4 / hostname check (files + PR commit messages)
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ -n "$BASE_REF" ]; then
+            node scripts/check-disclosure.mjs --commits "origin/$BASE_REF..HEAD"
+          else
+            node scripts/check-disclosure.mjs
+          fi
+      - name: Fetch public GitHub data
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run data:github
+      - name: Build (typecheck + vite build + 180 KB gz initial-JS budget)
+        run: npm run build
+      - name: Disclosure check on build output
+        run: node scripts/check-disclosure.mjs --dir dist
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: site-dist
+          path: dist
+          retention-days: 7
+
+  lighthouse:
+    name: Lighthouse CI (report only)
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: site-dist
+          path: dist
+      - name: Lighthouse (3 runs, mobile) — scores go to the job summary
+        run: npm run lighthouse
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: lighthouse-report
+          path: lighthouse-report
+          retention-days: 14
+
+  links:
+    name: External link check
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: site-dist
+          path: dist
+      - run: npm run check:links

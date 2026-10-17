@@ -1,0 +1,23 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jakes9NA — Engineering intelligent systems">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1F2A36" stroke-width="1" />
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#05070A" stop-opacity="0" />
+      <stop offset="100%" stop-color="#05070A" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#05070A" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <rect width="1200" height="630" fill="url(#fade)" />
+  <rect x="64" y="64" width="1072" height="502" fill="#11161D" stroke="#1F2A36" stroke-width="1" />
+  <circle cx="100" cy="100" r="5" fill="#49D7B1" />
+  <circle cx="120" cy="100" r="5" fill="#DA3633" />
+  <text x="100" y="260" font-family="JetBrains Mono, monospace" font-size="20" letter-spacing="4" fill="#49D7B1">SYSTEMS INTEGRATOR</text>
+  <text x="100" y="340" font-family="Inter, sans-serif" font-size="76" font-weight="700" fill="#E6EDF3">Jakes9NA</text>
+  <text x="100" y="400" font-family="Inter, sans-serif" font-size="28" fill="#A9B7C6">Engineering intelligent systems</text>
+  <text x="100" y="500" font-family="JetBrains Mono, monospace" font-size="18" letter-spacing="2" fill="#A9B7C6">FROM HARDWARE TO CLOUD. FROM DATA TO INTELLIGENCE.</text>
+  <line x1="100" y1="520" x2="1100" y2="520" stroke="#1F2A36" stroke-width="1" />
+  <text x="100" y="555" font-family="JetBrains Mono, monospace" font-size="16" fill="#DA3633">WINDHOEK, NAMIBIA</text>
+</svg>

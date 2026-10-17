@@ -1,0 +1,14 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npx vite preview --port 4173 --strictPort",
+      "startServerReadyPattern": "Local",
+      "url": ["http://localhost:4173/jakes9na/"],
+      "numberOfRuns": 3
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "lighthouse-report"
+    }
+  }
+}
